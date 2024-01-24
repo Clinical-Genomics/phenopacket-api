@@ -1,0 +1,23 @@
+version: "3.7"
+services:
+  app:
+    image: tip2toe.azurecr.io/tip2toe-api:latest
+    build: .
+    restart: ${DOCKER_RESTART_MODE:-unless-stopped}
+    ports:
+      - 80:3000
+    depends_on:
+      - mongo
+    environment:
+      NODE_ENV: ${NODE_ENV:-production}
+      DATABASE_URL: mongodb://mongo/mongodb
+      ALLOWED_ORIGIN: https://tip2toe.azurewebsites.net
+      API_URL: https://tip2toeapi.azurewebsites.net
+    command: "node /app/dist/index.js"
+  mongo:
+    image: mongo
+    volumes:
+      - db:/data/db
+
+volumes:
+  db:

@@ -6,6 +6,7 @@ import FileModel from "../model/file";
 import FormDataModel from "../model/formdata";
 import hash from "object-hash";
 import { generate } from "generate-password-ts";
+import SuggestedFeature from "../model/suggestedfeature";
 
 var router = express.Router();
 const upload = multer({ storage: multer.memoryStorage() });
@@ -136,6 +137,56 @@ router.post("/file", upload.single("file"), async (req, res) => {
       mimetype,
       url: `${process.env.API_URL}/api/v1/render-file/${_id}`,
     });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).send("Internal server error");
+  }
+});
+
+/**
+ * Save suggestedfeatures
+ */
+router.post("/suggestedfeatures", async (req, res) => {
+  const { suggestedFeatures } = req.body;
+  try {
+    suggestedFeatures.map(async (feature) => {
+      const featureDb = await SuggestedFeature.findOne({
+        "ontology.id": feature.ontology.id,
+        section: feature.section,
+      });
+      if (featureDb) {
+        await featureDb.update({ $inc: { count: 1 } }, { new: true });
+      } else {
+        const newFeature = new SuggestedFeature({ ...feature, count: 1 });
+        await newFeature.save();
+      }
+    });
+
+    return res.status(201).json(suggestedFeatures);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).send("Internal server error");
+  }
+});
+
+/**
+ * Get suggestedfeatures
+ */
+router.get("/suggestedfeatures", async (req, res) => {
+  const { section, pageQuery = 1, pageSizeQuery = 5 } = req.query;
+  try {
+    const page = +pageQuery;
+    const pageSize = +pageSizeQuery;
+    const suggestedFeatures = await SuggestedFeature.find({
+      section: section,
+    })
+      .sort({
+        count: -1,
+      })
+      .skip((page - 1) * pageSize)
+      .limit(pageSize)
+      .select("ontology -_id");
+    return res.status(200).json(suggestedFeatures);
   } catch (error) {
     console.error(error);
     return res.status(500).send("Internal server error");
