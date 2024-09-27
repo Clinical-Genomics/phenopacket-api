@@ -1,4 +1,4 @@
-FROM node:16-alpine as base
+FROM node:22-alpine as base
 # Create app directory
 WORKDIR /usr/src/app
 COPY package*.json ./
@@ -11,7 +11,7 @@ FROM base as build-stage
 RUN npm run build
 
 # # stage 2 - copy from buildstage to "prod image"
-FROM node:16-alpine as production-stage
+FROM node:22-alpine as production-stage
 WORKDIR /app
 RUN chown node:node .
 USER node

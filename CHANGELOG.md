@@ -3,7 +3,7 @@
 ## [unreleased]
 ### Changed
 - Allow configuring multiple trusted CORS origins
-
+- 
 
 ## Legacy version history
 
