@@ -3,7 +3,8 @@
 ## [unreleased]
 ### Changed
 - Allow configuring multiple trusted CORS origins
-- 
+- CG production Docker automation
+- More recent docker base image
 
 ## Legacy version history
 
