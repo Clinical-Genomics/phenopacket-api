@@ -26,4 +26,4 @@ jobs:
         name: clinicalgenomics/phenopacket-api-stage
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
-        tags: "latest, clinicalgenomics/phenopacket-api-stage:${{steps.branch-name.outputs.current_branch}}"
+        tags: "latest, ${{steps.branch-name.outputs.current_branch}}"
