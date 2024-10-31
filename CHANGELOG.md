@@ -1,6 +1,6 @@
 # Changelog
 
-## [unreleased]
+## [1.2.0]
 ### Changed
 - Allow configuring multiple trusted CORS origins
 - CG production Docker automation
