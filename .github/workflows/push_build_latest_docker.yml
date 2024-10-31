@@ -16,6 +16,9 @@ jobs:
       with:
         submodules: 'recursive'
 
+    - name: Get branch name
+      id: branch-name
+      uses: tj-actions/branch-names@v7
 
     - name: Publish main image (Dockerfile) to Registry
       uses: elgohr/Publish-Docker-Github-Action@v5
