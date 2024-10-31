@@ -6,6 +6,7 @@
 - CG production Docker automation
 - CG stage Docker automation
 - More recent docker base image
+- WF develop branch (thank you @Nirmal0809) - suggestedFeature model
 
 ## Legacy version history
 
