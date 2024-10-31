@@ -16,6 +16,9 @@ jobs:
       with:
         submodules: 'recursive'
 
+    - name: Get branch name
+      id: branch-name
+      uses: tj-actions/branch-names@v7
 
     - name: Publish main image (Dockerfile) to Registry
       uses: elgohr/Publish-Docker-Github-Action@v5
@@ -23,4 +26,4 @@ jobs:
         name: clinicalgenomics/phenopacket-api-stage
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
-        tags: "latest, ${{steps.branch-name.outputs.current_branch}}"
+        tags: "latest, clinicalgenomics/phenopacket-api-stage:${{steps.branch-name.outputs.current_branch}}"
