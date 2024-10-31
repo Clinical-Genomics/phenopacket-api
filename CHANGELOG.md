@@ -1,5 +1,10 @@
 # Changelog
 
+### [unreleased]
+#### Fixed
+- Docker stage builds use branch name
+
+
 ## [1.2.0]
 ### Changed
 - Allow configuring multiple trusted CORS origins
