@@ -3,6 +3,7 @@ import api from "./routes/api";
 import mongoose from "mongoose";
 import * as dotenv from "dotenv";
 import { Server } from "http";
+import { APP_VERSION } from "./version";
 import cors from "cors";
 
 dotenv.config();
@@ -25,7 +26,7 @@ app.get("/status", async (req, res) => {
   const { readyState } = mongoose.connection;
   res.status(readyState === 1 ? 200 : 500).send({
     status: readyState === 1 ? "OK" : "",
-    version: "1.1.0",
+    version: APP_VERSION,
     readyState,
   });
 });

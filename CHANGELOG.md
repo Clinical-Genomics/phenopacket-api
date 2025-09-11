@@ -3,7 +3,8 @@
 ### [unreleased]
 #### Fixed
 - Docker stage builds use branch name
-
+- Docker base images and dependencies updated, build provenance set (#17)
+- Status app version dynamically loaded from package json (#17)
 
 ## [1.2.0]
 ### Changed
