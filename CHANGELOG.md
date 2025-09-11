@@ -3,7 +3,7 @@
 ### [unreleased]
 #### Fixed
 - Docker stage builds use branch name
-
+- Docker base images and dependencies updated, build provenance set (#17)
 
 ## [1.2.0]
 ### Changed
