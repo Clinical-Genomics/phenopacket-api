@@ -1,6 +1,6 @@
 # Changelog
 
-### [unreleased]
+### [1.2.1]
 #### Fixed
 - Docker stage builds use branch name
 - Docker base images and dependencies updated, build provenance set (#17)
